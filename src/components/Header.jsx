@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export function Header() {
+export function Header({ cartItemCount }) {
   return (
     <header>
       <nav className="navbar fixed-top bg-white container-fluid border-bottom border-1">
@@ -16,7 +17,8 @@ export function Header() {
             >
               Cart{" "}
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                0<span className="visually-hidden">Cart items</span>
+                {cartItemCount}
+                <span className="visually-hidden">Cart items</span>
               </span>
             </Link>
           </div>
@@ -25,3 +27,7 @@ export function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  cartItemCount: PropTypes.number.isRequired,
+};

@@ -1,8 +1,11 @@
 import { useProducts } from "../useProducts";
 import { ProductCard } from "../ProductCard";
+import { useOutletContext } from "react-router-dom";
 
 export function Shop() {
   const { products, loading, error } = useProducts();
+  // eslint-disable-next-line no-unused-vars
+  const [, , addToCart, ...rest] = useOutletContext();
 
   if (loading) {
     return (
@@ -16,7 +19,7 @@ export function Shop() {
 
   if (error) {
     return (
-      <div className="text-center mt-5">
+      <div className="text-center mt-5 p-5">
         <div role="alert">
           <h1>Sorry, there was a problem fetching data</h1>
         </div>
@@ -28,7 +31,7 @@ export function Shop() {
     <div className="row row-cols-md-4 g-3 container my-5 mx-auto p-5">
       {products.map((product) => (
         <div key={product.id} className="col">
-          <ProductCard product={product} />
+          <ProductCard product={product} addToCart={addToCart} />
         </div>
       ))}
     </div>

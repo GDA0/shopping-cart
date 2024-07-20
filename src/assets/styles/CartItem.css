@@ -1,0 +1,4 @@
+.cart-item img {
+  max-width: 8%;
+  object-fit: contain;
+}
