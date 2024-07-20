@@ -1,33 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-export function useProducts() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export function useProducts () {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch('https://fakestoreapi.com/products')
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error(`HTTP error! Status: ${response.status}`)
         }
 
-        const fetchedProducts = await response.json();
+        const fetchedProducts = await response.json()
 
-        setProducts(fetchedProducts);
-        setError(null);
+        setProducts(fetchedProducts)
+        setError(null)
       } catch (err) {
-        setError(err.message);
-        setProducts([]);
+        setError(err.message)
+        setProducts([])
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchProducts();
-  }, []);
+    fetchProducts()
+  }, [])
 
-  return { products, loading, error };
+  return { products, loading, error }
 }

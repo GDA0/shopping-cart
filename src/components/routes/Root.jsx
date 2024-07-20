@@ -1,30 +1,30 @@
-import { Header } from "../Header";
-import { Footer } from "../Footer";
-import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { Header } from '../Header'
+import { Footer } from '../Footer'
+import { Outlet } from 'react-router-dom'
+import { useState } from 'react'
 
-export function Root() {
-  const [cartItems, setCartItems] = useState([]);
+export function Root () {
+  const [cartItems, setCartItems] = useState([])
 
-  function addToCart(product, quantity) {
+  function addToCart (product, quantity) {
     setCartItems((prevItems) => {
-      const itemExists = prevItems.find((item) => item.id === product.id);
+      const itemExists = prevItems.find((item) => item.id === product.id)
       if (itemExists) {
         return prevItems.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
-        );
+        )
       } else {
-        return [...prevItems, { ...product, quantity }];
+        return [...prevItems, { ...product, quantity }]
       }
-    });
+    })
   }
 
   const cartItemCount = cartItems.reduce(
     (count, item) => count + item.quantity,
     0
-  );
+  )
 
   return (
     <>
@@ -32,5 +32,5 @@ export function Root() {
       <Outlet context={[cartItems, setCartItems, addToCart, cartItemCount]} />
       <Footer />
     </>
-  );
+  )
 }
