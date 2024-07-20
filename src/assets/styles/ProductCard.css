@@ -1,0 +1,13 @@
+.product-card {
+  transition: box-shadow 0.3s;
+}
+
+.product-card img {
+  height: 50%;
+  object-fit: contain;
+  margin: auto;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.25);
+}
